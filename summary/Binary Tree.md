@@ -1,4 +1,4 @@
-### Recursion在tree题目的基本应用大致分为2类用法
+### Recursion在tree题目的基本应用大致分为3类用法
 
 - 把value从上往下传递（then 从上往下）的题目
     1.1 BST 判定方法
