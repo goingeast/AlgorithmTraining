@@ -1,3 +1,10 @@
+### 什么是树？
+### 树的遍历
+
+#### 前序遍历
+#### 中序遍历
+#### 后序遍历
+
 ### Recursion在tree题目的基本应用大致分为3类用法
 
 - 把value从上往下传递（then 从上往下）的题目
@@ -30,7 +37,7 @@
 |101|   Symmetric Tree|XXX|	
 |102|   Binary Tree Level Order Traversal|XXX|	
 |103|   Binary Tree Zigzag Level Order Traversal|XXX|	
-|104|	Maximum Depth of Binary Tree|XXX|	
+|104|	Maximum Depth of Binary Tree|后序，从下往上返回值|	
 |105|	Construct Binary Tree from Preorder and Inorder Traversal|XXX|	
 |106|	Construct Binary Tree from Inorder and Postorder Traversal|XXX|
 |107|	Binary Tree Level Order Traversal II|XXX|	
@@ -42,7 +49,7 @@
 |114|	Flatten Binary Tree to Linked List|XXX|
 |116|	Populating Next Right Pointers in Each Node|XXX|
 |117|	Populating Next Right Pointers in Each Node|XXX|
-|124|	Binary Tree Maximum Path Sum|XXX|	
+|124|	Binary Tree Maximum Path Sum|后序，从下往上返回值，并更新结果|	
 |129|	Sum Root to Leaf Numbers|XXX|
 |144|	Binary Tree Preorder Traversal|XXX|
 |145|	Binary Tree Postorder Traversal|XXX|
