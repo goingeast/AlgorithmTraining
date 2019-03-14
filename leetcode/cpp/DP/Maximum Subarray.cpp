@@ -10,10 +10,13 @@
 
 // If you have figured out the O(n) solution,
 // try coding another solution using the divide and conquer approach, which is more subtle.
+
+
 class Solution {
     public:
         int maximumSubarray(vector<int>& input){
-        // d[i] the largest sum of [0,1]
+        // dp[i] the largest sum of [0,i]
+        // dp[i] = max( dp[i] + input[i], input[i]);
         vector<int> dp(input.size());
         dp[0] = input[0];
         int ans = input[0];

@@ -1,4 +1,4 @@
-cclass UnionFind{
+class UnionFind{
     public:
         UnionFind(int size):parent(size){
             for(int i = 0; i < size; ++i){

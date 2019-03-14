@@ -15,7 +15,7 @@ public:
             for (auto child : node->children) {
                 res << " " << serializeHelper(child, res);
             }
-            res << " #";
+            res << " " << END;
         }
     }
 
@@ -30,7 +30,7 @@ public:
         if(iss.empty()) return NULL;
         string val = "";
         iss >> val;
-        if (val == "#") return NULL;
+        if (val == END) return NULL;
         Node *node = new Node(stoi(val), {});
         while(true){
             Node* ret = deserializeHelper(iss);
@@ -39,4 +39,6 @@ public:
         }
         return node;
     }
+    private:
+    static const string END = '#';
 };
