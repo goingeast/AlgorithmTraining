@@ -8,14 +8,19 @@
 1. 不定长的组合问题
     1. push_back/pop_back build candidate.
     2. 如果有重复，可以先sort，然后在剪枝
+    3. 第一种思路，选择加或者不加。 level = level+1. base case 是 level == candidate.size(), 最后一层才加入所有结果
+    4. 第二种思路是 level = i+1. base case 是每次产生就加入。可以剪枝。
 2. 定长的排列问题
     1. input, swap来swap去
     2. 如果有重复，可以用hashset去重，不用sort
+    3. 注意树的level = level+1
 3. 本质是树状图
 4. 存在重复有两种剪枝方法
     1. 分叉处直接跳过 subset II， combination sum II。
     2. hashset去重 permutation II
-5. 注意满足条件的剪枝。一般情况是树的level等于input array的size，相当于把所有的组合都要计算，但是有些时候可以根据题目的constraint提前剪枝，例如 Combination II。
+5. 注意满足条件的剪枝。一般情况是树的level等于input array的size，相当于把所有的组合都要计算，但是有些时候可以根据题目的constraint提前剪枝，例
+
+如 Combination II。
 ``` C++
 while(index+1 < nums.size() && nums[index] == nums[index+1])
 {
