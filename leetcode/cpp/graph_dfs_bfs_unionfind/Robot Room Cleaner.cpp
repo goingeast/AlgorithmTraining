@@ -48,37 +48,61 @@
 // Assume all four edges of the grid are all surrounded by wall.
 
 
+/**
+ * // This is the robot's control interface.
+ * // You should not implement it, or speculate about its implementation
+ * class Robot {
+ *   public:
+ *     // Returns true if the cell in front is open and robot moves into the cell.
+ *     // Returns false if the cell in front is blocked and robot stays in the current cell.
+ *     bool move();
+ *
+ *     // Robot will stay in the same cell after calling turnLeft/turnRight.
+ *     // Each turn will be 90 degrees.
+ *     void turnLeft();
+ *     void turnRight();
+ *
+ *     // Clean the current cell.
+ *     void clean();
+ * };
+ */
 class Solution {
 public:
-    
     void cleanRoom(Robot& robot) {
-        unordered_set<size_t> visited;
-        helper(robot, 0, 0, 0, visited);
+        dirs = {{0, 1},{1, 0},{0, -1},{-1, 0}};
+        //dirs = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        helper(robot, 0, 0, 0);
     }
-    void helper(Robot& robot, int x, int y, int dir, unordered_set<string>& visited) {
+    
+    void helper(Robot& robot, int dir, int x, int y) {
         robot.clean();
-        visited.insert(key(x, y));
         
-        vector<vector<int>> dirs{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-
-        for (int i = 0; i < dirs.size(); ++i) {
-            int cur = (i + dir) % 4; // get next direction when turn right
-            int newX = x + dirs[cur][0];
-            int newY = y + dirs[cur][1];
-
-            if (!visited.count(key(newX, newY)) && robot.move()) {
-                helper(robot, newX, newY, cur, visited);
-                robot.turnRight(); // get back
-                robot.turnRight();
+        isVisited.insert(key(x, y));
+        
+        for(int i= 0; i< dirs.size(); ++i){
+            int cur = (dir+i)%4;
+            int nx = x + dirs[cur][0];
+            int ny = y + dirs[cur][1];
+            
+            if(isVisited.count(key(nx, ny)) == 0 && robot.move()){
+                helper(robot, cur, nx , ny);
+                robot.turnLeft();
+                robot.turnLeft();
                 robot.move();
                 robot.turnLeft();
                 robot.turnLeft();
             }
-            robot.turnRight();
+            robot.turnLeft();
         }
+        
     }
-
-    size_t key(size_t i, size_t j){
-        return i << 32 | j;
+    
+ 
+    string key(int x, int y){
+        return to_string(x) + '-' + to_string(y);
     }
+    
+    private:
+    unordered_set<string> isVisited;
+    vector<vector<int>> dirs;
 };

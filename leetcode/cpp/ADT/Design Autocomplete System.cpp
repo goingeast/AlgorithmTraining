@@ -61,9 +61,17 @@ class TrieNode {
     TrieNode(){
 
     }
-    bool isEnd;
-    unordered_map<string, int> freq;
+    bool isEnd = false;
     unordered_map<char, TrieNode*> children;
+    unordered_map<string, int> freq;
+    
+};
+
+class com {
+public:
+    bool operator()(const pair<string, int>& a, const pair<string, int>& b) {
+        return a.second > b.second || (a.second == b.second && a.first < b.first);
+    };
 };
 
 class AutocompleteSystem {
@@ -84,11 +92,12 @@ public:
             return ret;
         }
 
-        if(curr == NULL) curr = root;
+        if(cur == NULL) cur = root;
 
-        CurInput.push_back(c);
-        if(cur->children.find(c) == cur->children.end()){
-            cur = cur->children[c] = new TrieNode();
+        curInput.push_back(c);
+        
+        if(cur->children[c] == NULL){
+            cur->children[c] = new TrieNode();
         }
         cur = cur->children[c];
 
@@ -100,11 +109,8 @@ public:
         if(cur->freq.empty()){
             return ret;
         }
-        auto com = [](pair<string, int>& a, pair<string, int>& b) {
-            return a.second > b.second || (a.second == b.second && a.first < b.first);
-        }
-
-        priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(com)) pq;
+        
+        priority_queue<pair<string, int>, vector<pair<string, int>>, com> pq;
 
         for(auto f : cur->freq){
             pq.push(f);
@@ -123,8 +129,8 @@ public:
     void insert(string sentences, int times){
         TrieNode* iter = root;
         for(char c : sentences){
-            if(iter->children.find(c) == iter->children.end()){
-                iter->chilren[c] = new TrieNode();
+            if(iter->children[c] == NULL){
+                iter->children[c] = new TrieNode();
             }
             iter = iter->children[c];
             iter->freq[sentences] += times;
@@ -138,6 +144,12 @@ public:
     }
 
 private:
-    TrieNode* root, cur;
+    TrieNode* root, *cur;
     string curInput;
 };
+
+/**
+ * Your AutocompleteSystem object will be instantiated and called as such:
+ * AutocompleteSystem* obj = new AutocompleteSystem(sentences, times);
+ * vector<string> param_1 = obj->input(c);
+ */

@@ -19,9 +19,21 @@ int findSteps(int num) {
 int findLongestSteps(int num) {
     if(num < 1) return 0;
     int res = 0;
-
-    for(int i = 1; i <= num; ++i) {
-        res = max(res, findSteps(i));
+    unordered_map<int, int> cache;
+    cache[1] = 1;
+    for(int i = 2; i <= num; ++i) {
+        int num = i;
+        int count = 0;
+        while(cache.count(num) == 0){
+            count++;
+            if(num%2 == 0){
+                num /= 2;
+            }else{
+                num = num*3 +1;
+            }
+        }
+        res = max(res, count+cache[num]);
+        cache[num] = count+cache[num];
     }
     return res;
 }
