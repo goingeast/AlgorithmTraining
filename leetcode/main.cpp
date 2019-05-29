@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <map>
 #include <set>
 #include <map>
 #include <queue>
@@ -14,28 +15,23 @@
 
 using namespace std;
 
-//#include "./vscode/471.encode-string-with-shortest-length.cpp"
-//#include "../leetcode/cpp/graph_dfs_bfs_unionfind/RemoveParethesis.cpp"
-//#include "../leetcode/cpp/graph_dfs_bfs_unionfind/InvertedIndex.cpp"
-#include "/Users/hzhao1/AlgorithmTraining/thumbtack/tf_idf.cpp"
-#include "/Users/hzhao1/AlgorithmTraining/thumbtack/taskScheduler.cpp"
-
-void message(){
-        cout << "send email!" << endl;
-}
+//#include "../facebook/KSum.cpp"
+#include "../others/subset_sum.cpp"
 
 int main(){
-    // //Solution s;
-    // vector<vector<int>> station = {{2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}};
-    // vector<vector<int>> station2 ={{0,2,3},{2,5,3}};
-    // vector<vector<int>> station3 ={{1,2,1},{1,2,2},{1,2,3}};
-    // vector<int> array = {7,2,5,10,8};
-    // //cout << s.encode("aaaaaaaaaa");
-    // //cout << s.removeParenthesis(")(");
+    Solution s;
+    vector<vector<int>> station = {{2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}};
+    vector<vector<int>> station2 ={{0,2,3},{2,5,3}};
+    vector<vector<int>> station3 ={{1,2,1},{1,2,2},{1,2,3}};
+    vector<int> array = {3, 34, 4, 12, 5, 2};
+    //cout << s.encode("aaaaaaaaaa");
+    //cout << isCircle("GLLLLGGRGLLLLGGRGLLLLGGRGLLLLGGR");
+    // s.addRange(1, 10);
+    // s.addRange(12, 14);
+    // s.removeRange(3, 5);
+    // s.printMap();
 
-    // unordered_map<char, vector<int>> m{{'A', {4, 7, 9, 12, 15}}, {'B', {0, 8, 10, 14, 20}}, {'C', {6, 13, 16, 30, 50}}};
-    // unordered_map<char, vector<int>> n{{'A', {0,10}}, {'B', {3, 9}}, {'C', {5,15}}};
-    // //cout << minDistance(m);
+    cout << s.kSum(array, 6, 9);
 
     // vector<vector<string>> m1 = {{"A","B", "C", "D"},
     //                              {"A","B", "D"},
