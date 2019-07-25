@@ -47,7 +47,12 @@ public:
         int res = 0;
         while(x) {
             int last = x%10;
-            if( res > INT_MAX/10 || res < INT_MIN/10) return 0;
+            if( last > 0 && res > (INT_MAX - last)/10){
+                return 0;
+            }
+            if( last < 0 && res < (INT_MIN - last)/10) {
+                return 0;
+            }
             res = res * 10 + last;
             x /= 10;
         }
